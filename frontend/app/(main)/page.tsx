@@ -17,7 +17,7 @@ export default function Home() {
 
 
       {/* card here */}
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-10 place-content-center">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-content-center">
         {dummyBlogData.map((blog,index) =>(
           <BlogCard key={index} {...blog} />
         ))}

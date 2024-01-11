@@ -1,4 +1,5 @@
 import NavBar from "@/components/navigation/navbar"
+import Wrapper from "@/components/wrappers/wrapper"
 
 export default function MainLayout({ children }: {
     children: React.ReactNode
@@ -6,7 +7,10 @@ export default function MainLayout({ children }: {
     return (
         <div>
             <NavBar />
-            {children}
+
+            <Wrapper>
+                {children}
+            </Wrapper>
         </div>
     )
 }
