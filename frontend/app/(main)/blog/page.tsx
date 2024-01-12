@@ -1,4 +1,7 @@
+import BlogCard from "@/components/cards/blog-card";
 import { Viewer } from "@/components/markdown/viewer/test-viewer";
+import { Separator } from "@/components/shadcn/ui/separator";
+import { dummyBlogData } from "@/dummy-datas/blogs.data";
 import Image from "next/image";
 
 export default function BlogPage() {
@@ -15,16 +18,20 @@ export default function BlogPage() {
 
 
       {/* bottom container */}
-
-      <div className=" flex items-center justify-between border w-full min-h-screen">
-
-
-        <div className="w-3/4 border h-full">
-          <Viewer/>
+      <div className=" flex items-center flex-col gap-10 md:gap-0 md:flex-row justify-between w-full min-h-screen">
+        <div className="w-full md:w-3/4  h-full">
+          <Viewer />
         </div>
 
-        <div className="w-1/4 border h-full">
-          container 1
+
+        <Separator className=" md:hidden" />
+
+        <div className=" w-full md:w-1/4  h-full flex flex-wrap">
+          {dummyBlogData.slice(0,6).map((blog, index) => (
+            <BlogCard key={index} {...blog} />
+          ))}
+
+
         </div>
 
       </div>
