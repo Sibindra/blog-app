@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const withMDX = require('@next/mdx')()
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -12,6 +15,7 @@ const nextConfig = {
       },
     ],
   },
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 };
 
-module.exports = nextConfig;
+module.exports = withMDX(nextConfig)
