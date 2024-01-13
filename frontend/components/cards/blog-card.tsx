@@ -19,10 +19,11 @@ const BlogCard = ({
     readMoreLink
 }: blogCardProps) => {
 
+    // is mouse inside image container
     const [isInsideContainer, setIsInsideContainer] = useState<boolean>(false)
 
     return (
-        <div className=" min-h-80  p-5 flex flex-col gap-3">
+        <div className=" min-h-80 p-5 flex flex-col gap-3">
 
             {title ?
                 <p className=" tracking-tight whitespace-normal font-semibold text-xl">

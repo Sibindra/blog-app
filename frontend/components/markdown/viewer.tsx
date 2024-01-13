@@ -1,7 +1,16 @@
+'use client'
+
 import { MDXRemote } from 'next-mdx-remote/rsc'
- 
-export default async function RemoteMdxPage() {
-  const res = await fetch('https://raw.githubusercontent.com/Sibindra/testmds/main/test.md')
-  const markdown = await res.text()
-  return <MDXRemote source={markdown} />
+import { useState } from 'react'
+
+export default function MDXViewer({ markdown }: { markdown: string }) {
+
+    const [markdownData] = useState(markdown)
+
+    return (
+        <div className=' prose block min-w-full p-10 dark:text-white dark:prose-headings:text-white prose-orange'>
+            <MDXRemote source={markdownData} />
+        </div>
+
+    )
 }

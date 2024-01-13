@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
-const withMDX = require('@next/mdx')()
+import createMDX from "@next/mdx";
+import remarkGfm from 'remark-gfm'
 
 const nextConfig = {
   images: {
@@ -15,7 +16,14 @@ const nextConfig = {
       },
     ],
   },
-  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 };
 
-module.exports = withMDX(nextConfig)
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [],
+  },
+});
+
+export default withMDX(nextConfig)
