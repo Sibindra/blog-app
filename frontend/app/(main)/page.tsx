@@ -17,11 +17,11 @@ export default function Home() {
 
 
       {/* card here */}
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-content-center">
-        {dummyBlogData.map((blog,index) =>(
-          <BlogCard key={index} {...blog} />
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-content-center gap-5">
+        {dummyBlogData.map((blog, index) => (
+          <BlogCard key={index} {...blog} className="p-5" />
         ))}
-        
+
       </div>
 
     </main>
