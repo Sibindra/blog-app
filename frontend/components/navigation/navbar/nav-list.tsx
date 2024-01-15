@@ -6,13 +6,13 @@ import { Menu } from "lucide-react"
 import { useTheme } from "next-themes"
 
 const NavList = () => {
-    const { setTheme , theme } = useTheme()
+    const { setTheme, theme } = useTheme()
 
 
-    const toggleTheme = () =>{
-        if(theme === 'dark'){
+    const toggleTheme = () => {
+        if (theme === 'dark') {
             setTheme('light')
-        }else{
+        } else {
             setTheme('dark')
         }
     }
@@ -20,7 +20,7 @@ const NavList = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant={'outline'} size={'icon'} className=" focus-visible:ring-transparent border-red-500 border">
+                <Button variant={'ghost'} size={'icon'} className="border">
                     <Menu size={15} />
                 </Button>
             </DropdownMenuTrigger>

@@ -3,6 +3,7 @@ import MDXViewer from "@/components/markdown/viewer"
 import { Separator } from "@/components/shadcn/ui/separator"
 import { dummyBlogData } from "@/dummy-datas/blogs.data"
 import { cn } from "@/lib/utils"
+import { MDXRemote } from "next-mdx-remote/rsc"
 import Image from "next/image"
 
 export default async function BlogPage() {
@@ -15,12 +16,12 @@ export default async function BlogPage() {
 
 
   return (
-    <div className=" flex flex-col md:flex-row border border-red-500">
+    <div className=" flex flex-col md:flex-row">
 
       <div className=" w-full md:w-3/4 px-10 flex flex-col gap-10">
         <h1 className="  font-bold text-4xl tracking-wide">Installing Next.js and PostgreSQL on macOS, Windows, and Linux</h1>
         <ImgContainer src={"https://images.unsplash.com/photo-1704928341414-5ae341023539?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3NXx8fGVufDB8fHx8fA%3D%3D"} />
-        <MDXViewer markdown={markdown} />
+        <MDXViewer markdownData={markdown} />
       </div>
 
 
