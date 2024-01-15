@@ -9,7 +9,7 @@ export default function MDXViewer({ markdown  , className}: { markdown: string ,
     const [markdownData] = useState(markdown)
 
     return (
-        <div className={cn(' prose block min-w-full  dark:text-white dark:prose-headings:text-white prose-orange' , className)}>
+        <div className={cn(' prose min-w-full  dark:text-white dark:prose-headings:text-white prose-orange' , className)}>
             <MDXRemote source={markdownData} />
         </div>
 

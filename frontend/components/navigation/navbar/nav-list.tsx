@@ -20,7 +20,7 @@ const NavList = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant={'outline'} size={'icon'} className=" focus-visible:ring-transparent">
+                <Button variant={'outline'} size={'icon'} className=" focus-visible:ring-transparent border-red-500 border">
                     <Menu size={15} />
                 </Button>
             </DropdownMenuTrigger>
