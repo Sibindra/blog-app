@@ -1,14 +1,12 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/shadcn/ui/avatar"
+import Image from "next/image"
 import Link from "next/link"
 
-const UserAvatar = () => {
+
+const UserAvatar =  () => {
     return (
-        <Avatar className=" cursor-pointer">
-            <Link href={'/'}>
-                <AvatarImage src="https://avatars.githubusercontent.com/u/59206903?v=4" />
-                <AvatarFallback>S</AvatarFallback>
-            </Link>
-        </Avatar>
+        <Link href={'/'} className="cursor-pointer border aspect-square w-10 h-10 relative rounded-full overflow-hidden">
+            <Image src={'https://avatars.githubusercontent.com/u/59206903?v=4'} alt={'notFound'} fill className="scale-100 hover:scale-105 transition-all " sizes="100"/>
+        </Link>
     )
 }
 export default UserAvatar

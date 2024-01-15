@@ -4,4 +4,5 @@ export type blogCardProps = {
   imgSrc: string;
   demoLink: string;
   readMoreLink: string;
+  className?: string;
 };
