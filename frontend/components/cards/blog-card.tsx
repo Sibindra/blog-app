@@ -9,6 +9,7 @@ import { Button } from "@/components/shadcn/ui/button"
 import { Badge } from "@/components/shadcn/ui/badge"
 import { blogCardProps } from "@/types/blog"
 import { Skeleton } from "@/components/shadcn/ui/skeleton"
+import { cn } from "@/lib/utils"
 
 
 const BlogCard = ({
@@ -16,13 +17,15 @@ const BlogCard = ({
     description,
     imgSrc,
     demoLink,
-    readMoreLink
+    readMoreLink,
+    className
 }: blogCardProps) => {
 
+    // is mouse inside image container
     const [isInsideContainer, setIsInsideContainer] = useState<boolean>(false)
 
     return (
-        <div className=" min-h-80  p-5 flex flex-col gap-3">
+        <div className={cn(" min-h-80 flex flex-col gap-3" , className)}>
 
             {title ?
                 <p className=" tracking-tight whitespace-normal font-semibold text-xl">
@@ -41,6 +44,7 @@ const BlogCard = ({
                         alt="blog image err"
                         className=" scale-100 transform transition-all duration-500 hover:scale-105"
                         fill
+                        sizes="500"
                     />
                     :
                     <Skeleton className="w-96 h-60" />
