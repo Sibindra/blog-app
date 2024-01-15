@@ -44,6 +44,7 @@ const BlogCard = ({
                         alt="blog image err"
                         className=" scale-100 transform transition-all duration-500 hover:scale-105"
                         fill
+                        sizes="500"
                     />
                     :
                     <Skeleton className="w-96 h-60" />
