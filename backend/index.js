@@ -4,9 +4,11 @@ const PORT = process.env.PORT || 8000
 const express = require('express')
 const app = express()
 
+// DB
+const connect = require('./lib/connect')
+connect()
 
-app.get('/' , (req , res) =>{
-    return res.send('working')
-})
+
+
 
 app.listen(PORT , () => console.log('Server: ' , PORT))
