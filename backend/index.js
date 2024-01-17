@@ -15,10 +15,13 @@ app.use(cors());
 const connect = require("./lib/connect");
 connect();
 
-
 // test api
 app.get("/", (req, res) => {
-  res.send("Hello");
+  try {
+    res.send("Response OK!");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 // blog api

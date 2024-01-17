@@ -13,18 +13,33 @@ const getBlogById = async (req, res) => {
 };
 
 const createNewBlog = async (req, res) => {
-  const { title, description, imgSrc, demoLink } = req.body;
+  const { title, description, imgSrc, demoLink, blogContent } = req.body;
 
-  if (!title || !description || !imgSrc || !demoLink) {
+  if (!title || !description || !imgSrc || !demoLink || !blogContent) {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
 
   try {
-    const blog = await Blogs.create({ title, description, imgSrc, demoLink });
+    const blog = await Blogs.create({
+      title,
+      description,
+      imgSrc,
+      demoLink,
+      blogContent,
+    });
     return res.status(201).json({ msg: "Success", data: blog });
   } catch (err) {
     return res.status(500).json({ msg: "Error", error: err });
   }
 };
 
-module.exports = { getAllBlogs, getBlogById, createNewBlog };
+const deleteBlogById = async (req, res) => {
+  try {
+    await Blogs.findByIdAndDelete(req.params.id);
+    return res.status(201).json({ msg: "Success" });
+  } catch (err) {
+    return res.status(500).json({ msg: "Error", error: err });
+  }
+};
+
+module.exports = { getAllBlogs, getBlogById, createNewBlog, deleteBlogById };
