@@ -1,5 +1,5 @@
 import BlogCard from "@/components/cards/blog-card"
-import MDXViewer from "@/components/markdown/viewer"
+import RemoteMDXViewer from "@/components/markdown/remote-viewer";
 import { cn } from "@/lib/utils"
 import { blogCardProps } from "@/types/blog"
 import Image from "next/image"
@@ -52,7 +52,7 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
         </div>
 
         <ImgContainer src={"https://images.unsplash.com/photo-1704928341414-5ae341023539?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3NXx8fGVufDB8fHx8fA%3D%3D"} />
-        <MDXViewer markdownData={blogData.blogContent} />
+        <RemoteMDXViewer markdownData={blogData.blogContent} />
       </div>
 
 
