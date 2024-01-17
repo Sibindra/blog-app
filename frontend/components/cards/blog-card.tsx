@@ -32,7 +32,7 @@ const BlogCard = ({
                 </p>
                 : <Skeleton className="w-full h-10" />}
 
-            <div className=" relative w-full h-60 rounded-md overflow-hidden "
+            <div className=" relative w-full h-60 rounded-md overflow-hidden border "
                 onMouseEnter={() => setIsInsideContainer(true)}
                 onMouseLeave={() => setIsInsideContainer(false)}>
                 {imgSrc ?

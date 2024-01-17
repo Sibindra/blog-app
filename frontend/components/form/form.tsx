@@ -1,16 +1,12 @@
 "use client"
 
-import Link from "next/link"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useFieldArray, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import * as z from "zod"
-
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/shadcn/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -18,6 +14,7 @@ import {
 } from "@/components/shadcn/ui/form"
 import { Input } from "@/components/shadcn/ui/input"
 import { toast } from "@/components/shadcn/ui/use-toast"
+import MDXFormComponent from "../markdown/mdx-form"
 
 
 const blogFormSchema = z.object({
@@ -39,10 +36,58 @@ type blogFormValues = z.infer<typeof blogFormSchema>
 
 const defaultValues: Partial<blogFormValues> = {}
 
+const postFormData = async (data: blogFormValues) => {
+    const { title, description, imgSrc, demoLink, blogContent, readTime } = data
+
+    try {
+        const res = await fetch("http://localhost:8000/api/blog", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+                title,
+                description,
+                imgSrc,
+                demoLink,
+                blogContent: blogContent.toString(),
+                readTime,
+
+            }),
+
+
+        })
+
+        if (res.ok) {
+            toast({
+                title: "Blog Posted Succesfully ",
+                description: (
+                    <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+                        <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+                    </pre>
+                ),
+                variant: 'default'
+            })
+        }
+
+
+    } catch (error) {
+        toast({
+            title: "Sorry Something went wrong ",
+            description: (
+                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+                    <code className="text-white">{JSON.stringify(error)}</code>
+                </pre>
+            ),
+            variant: 'destructive'
+        })
+
+    }
+}
+
 
 const BlogForm = () => {
-
-
     const form = useForm<blogFormValues>({
         resolver: zodResolver(blogFormSchema),
         defaultValues,
@@ -51,13 +96,15 @@ const BlogForm = () => {
 
 
     function onSubmit(data: blogFormValues) {
-        toast({
-            title: "You submitted the following values:",
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
+        postFormData(data)
+        
+        form.reset({
+            title: "",
+            description: "",
+            imgSrc: "",
+            demoLink: "",
+            blogContent: "",
+            readTime: "",
         })
     }
 
@@ -129,7 +176,7 @@ const BlogForm = () => {
                         <FormItem>
                             <FormLabel>Blog Content</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <MDXFormComponent {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

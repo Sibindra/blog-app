@@ -25,13 +25,17 @@ function formatDateString(inputDateString: string): string {
 }
 
 async function getBlogById(id:string){
-  const res = await fetch(`http://localhost:8000/api/blog/${id}`)
+  const res = await fetch(`http://localhost:8000/api/blog/${id}` , {
+    cache: 'no-cache',
+  })
 
   return res.json()
 }
 
 async function getBlogs() {
-  const res = await fetch('http://localhost:8000/api/blog')
+  const res = await fetch('http://localhost:8000/api/blog' , {
+    cache: 'no-cache',
+  })
 
   return res.json()
 }

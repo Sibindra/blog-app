@@ -8,16 +8,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "images.unsplash.com",
+        hostname: "**",
       },
-      {
-        protocol: "https",
-        hostname: "plus.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com"
-      }
     ],
   },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
