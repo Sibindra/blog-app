@@ -1,6 +1,5 @@
 'use client'
 
-
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
@@ -13,11 +12,11 @@ import { cn } from "@/lib/utils"
 
 
 const BlogCard = ({
+    _id,
     title,
     description,
     imgSrc,
     demoLink,
-    readMoreLink,
     className
 }: blogCardProps) => {
 
@@ -30,7 +29,6 @@ const BlogCard = ({
             {title ?
                 <p className=" tracking-tight whitespace-normal font-semibold text-xl">
                     {title}
-
                 </p>
                 : <Skeleton className="w-full h-10" />}
 
@@ -50,22 +48,15 @@ const BlogCard = ({
                     <Skeleton className="w-96 h-60" />
 
                 }
-
-
-
-
                 {
                     isInsideContainer &&
-                    <Link href={demoLink || '#'}>
+                    <a href={demoLink || '#'} target="_blank">
                         <Badge className="absolute flex gap-2 bottom-2 right-2 bg-white text-black cursor-pointer hover:bg-slate-100 hover:underline">
                             demo
                             <ExternalLink size={10} />
                         </Badge>
-                    </Link>
+                    </a>
                 }
-
-
-
             </div>
 
             {description ?
@@ -74,21 +65,17 @@ const BlogCard = ({
                 </p> :
                 <Skeleton className="w-full h-10" />
             }
-
-
             {
                 <div className=" flex justify-start items-center mt-5">
-                    {readMoreLink ?
-                        <Link href={readMoreLink}>
+                    {_id ?
+                        <Link href={`/blog/${_id}`}>
                             <Button className="rounded-xl" size={'sm'}>Read More</Button>
                         </Link>
                         :
                         <Skeleton className="w-20 h-10" />}
-
                 </div>
             }
         </div>
-
     )
 }
 export default BlogCard

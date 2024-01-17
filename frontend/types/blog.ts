@@ -1,8 +1,8 @@
 export type blogCardProps = {
+  _id: string;
   title: string;
   description: string;
   imgSrc: string;
   demoLink: string;
-  readMoreLink: string;
   className?: string;
 };

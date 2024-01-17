@@ -29,6 +29,11 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+
+    readTime:{
+        type: String,
+        required: true,
+    },
 } , { timestamps: true });
 
 

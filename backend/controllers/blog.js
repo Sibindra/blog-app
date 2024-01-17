@@ -13,9 +13,9 @@ const getBlogById = async (req, res) => {
 };
 
 const createNewBlog = async (req, res) => {
-  const { title, description, imgSrc, demoLink, blogContent } = req.body;
+  const { title, description, imgSrc, demoLink, blogContent , readTime } = req.body;
 
-  if (!title || !description || !imgSrc || !demoLink || !blogContent) {
+  if (!title || !description || !imgSrc || !demoLink || !blogContent || !readTime) {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
 
@@ -26,6 +26,7 @@ const createNewBlog = async (req, res) => {
       imgSrc,
       demoLink,
       blogContent,
+      readTime
     });
     return res.status(201).json({ msg: "Success", data: blog });
   } catch (err) {
