@@ -1,9 +1,6 @@
 import BlogList from "@/components/blog-list/blog-list";
 
 export default async function Home() {
-
-  console.log('api url = ',process.env.API_URL)
-
   return (
     <main>
       <div className=" w-full min-h-96 flex justify-center items-center ">

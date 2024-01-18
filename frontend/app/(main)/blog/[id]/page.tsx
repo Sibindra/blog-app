@@ -56,10 +56,6 @@ async function getBlogs(id: string , apiURL: string) {
 export default async function BlogPage({ params }: { params: { id: string } }) {
 
   const apiURL = process.env.NEXT_PUBLIC_API_URL as string
-
-
-
-
   const blogData = await getBlogById(params.id , apiURL)
   const blogs = await getBlogs(params.id , apiURL)
 
