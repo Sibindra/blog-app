@@ -1,17 +1,11 @@
 import { blogCardProps } from "@/types/blog"
 import BlogCard from "@/components/cards/blog-card"
-
-const apiUrl = process.env.API_URL as string
+import axiosInstance from "@/lib/auth"
 
 async function getBlogs() {
-    if (!apiUrl) {
-        throw new Error('api url is undefined');
-    }
+    const res = await axiosInstance.get('/blog')
 
-    const res = await fetch(apiUrl, {
-        cache: 'no-cache',
-    })
-    return res.json()
+    return res.data
 }
 
 const BlogList = async () => {

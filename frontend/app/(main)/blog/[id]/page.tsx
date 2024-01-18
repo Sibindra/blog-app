@@ -1,5 +1,6 @@
 import BlogCard from "@/components/cards/blog-card"
 import RemoteMDXViewer from "@/components/markdown/remote-viewer";
+import axiosInstance from "@/lib/auth";
 import { cn } from "@/lib/utils"
 import { blogCardProps } from "@/types/blog"
 import Image from "next/image"
@@ -25,34 +26,20 @@ function formatDateString(inputDateString: string): string {
     .replace(' ', ' • ');
 }
 
-const apiURL = process.env.API_URL as string
 
 async function getBlogById(id: string) {
-  if (!apiURL) {
-    throw new Error('api url is not defined');
-  }
+  const res = axiosInstance.get(`/blog/${id}`)
 
-  const res = await fetch(apiURL + `/${id}`, {
-    cache: 'no-cache',
-  })
-
-  return res.json()
+  return (await res).data
 }
 
-async function getBlogs(id: string ) {
-  if (!apiURL) {
-    throw new Error('API_URL is not defined');
-  }
+async function getBlogs(id: string) {
+  const res = await axiosInstance.get('/blog');
 
-  const res = await fetch(apiURL, {
-    cache: 'no-cache',
-  })
+  const blogs = (await res).data.filter((blog: any) => blog._id !== id);
 
-  const data = await res.json().then((data) => {
-    return data.filter((blog: any) => blog.id !== id)
-  })
+  return blogs
 
-  return data
 }
 
 export default async function BlogPage({ params }: { params: { id: string } }) {
