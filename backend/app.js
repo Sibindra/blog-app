@@ -6,7 +6,8 @@ const app = express();
 
 // middlewares
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+const checkAuth = require('./middewares/auth')
+app.use(checkAuth);
 // cors
 const cors = require("cors");
 app.use(cors());
