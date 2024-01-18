@@ -5,7 +5,6 @@ import { blogCardProps } from "@/types/blog"
 import Image from "next/image"
 
 
-const API_URL = process.env.API_URL as string
 
 function formatDateString(inputDateString: string): string {
   const parsedDateTime: Date = new Date(inputDateString);
@@ -26,17 +25,24 @@ function formatDateString(inputDateString: string): string {
     .replace(' ', ' • ');
 }
 
-async function getBlogById(id: string) {
-  const res = await fetch(API_URL + `/${id}`, {
+async function getBlogById(id: string , apiURL: string) {
+  if (!apiURL) {
+    throw new Error('api url is not defined');
+  }
+
+  const res = await fetch(apiURL + `/${id}`, {
     cache: 'no-cache',
   })
 
   return res.json()
 }
 
-// remove the data with the same id
-async function getBlogs(id: string) {
-  const res = await fetch(API_URL as string, {
+async function getBlogs(id: string , apiURL: string) {
+  if (!apiURL) {
+    throw new Error('API_URL is not defined');
+  }
+
+  const res = await fetch(apiURL, {
     cache: 'no-cache',
   })
 
@@ -49,8 +55,13 @@ async function getBlogs(id: string) {
 
 export default async function BlogPage({ params }: { params: { id: string } }) {
 
-  const blogData = await getBlogById(params.id)
-  const blogs = await getBlogs(params.id)
+  const apiURL = process.env.NEXT_PUBLIC_API_URL as string
+
+
+
+
+  const blogData = await getBlogById(params.id , apiURL)
+  const blogs = await getBlogs(params.id , apiURL)
 
   return (
     <div className=" flex flex-col md:flex-row">
@@ -62,7 +73,7 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
           {blogData.readTime}  • {formatDateString(blogData.createdAt)}
         </div>
 
-        <ImgContainer src={"https://images.unsplash.com/photo-1704928341414-5ae341023539?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3NXx8fGVufDB8fHx8fA%3D%3D"} />
+        <ImgContainer src={blogData.imgSrc} />
         <RemoteMDXViewer markdownData={blogData.blogContent} />
       </div>
 

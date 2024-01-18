@@ -40,7 +40,14 @@ const postFormData = async (data: blogFormValues) => {
     const { title, description, imgSrc, demoLink, blogContent, readTime } = data
 
     try {
-        const res = await fetch(process.env.API_URL as string, {
+
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
+        if (!apiUrl) {
+            throw new Error('api url is undefined');
+        }
+
+        const res = await fetch(apiUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
