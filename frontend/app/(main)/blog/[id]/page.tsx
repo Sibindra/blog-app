@@ -25,7 +25,9 @@ function formatDateString(inputDateString: string): string {
     .replace(' ', ' • ');
 }
 
-async function getBlogById(id: string , apiURL: string) {
+const apiURL = process.env.API_URL as string
+
+async function getBlogById(id: string) {
   if (!apiURL) {
     throw new Error('api url is not defined');
   }
@@ -37,7 +39,7 @@ async function getBlogById(id: string , apiURL: string) {
   return res.json()
 }
 
-async function getBlogs(id: string , apiURL: string) {
+async function getBlogs(id: string ) {
   if (!apiURL) {
     throw new Error('API_URL is not defined');
   }
@@ -55,9 +57,8 @@ async function getBlogs(id: string , apiURL: string) {
 
 export default async function BlogPage({ params }: { params: { id: string } }) {
 
-  const apiURL = process.env.NEXT_PUBLIC_API_URL as string
-  const blogData = await getBlogById(params.id , apiURL)
-  const blogs = await getBlogs(params.id , apiURL)
+  const blogData = await getBlogById(params.id)
+  const blogs = await getBlogs(params.id)
 
   return (
     <div className=" flex flex-col md:flex-row">

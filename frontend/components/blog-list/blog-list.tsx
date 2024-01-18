@@ -1,9 +1,9 @@
 import { blogCardProps } from "@/types/blog"
 import BlogCard from "@/components/cards/blog-card"
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL as string
 
-
-async function getBlogs(apiUrl: string) {
+async function getBlogs() {
     if (!apiUrl) {
         throw new Error('api url is undefined');
     }
@@ -15,9 +15,8 @@ async function getBlogs(apiUrl: string) {
 }
 
 const BlogList = async () => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL as string
 
-    const blogs = await getBlogs(apiUrl)
+    const blogs = await getBlogs()
 
     return (
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-content-center gap-5">
