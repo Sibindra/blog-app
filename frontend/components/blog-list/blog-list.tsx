@@ -1,7 +1,7 @@
 import { blogCardProps } from "@/types/blog"
 import BlogCard from "@/components/cards/blog-card"
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL as string
+const apiUrl = process.env.API_URL as string
 
 async function getBlogs() {
     if (!apiUrl) {
