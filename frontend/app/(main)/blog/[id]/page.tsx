@@ -5,6 +5,8 @@ import { blogCardProps } from "@/types/blog"
 import Image from "next/image"
 
 
+const API_URL = process.env.API_URL as string
+
 function formatDateString(inputDateString: string): string {
   const parsedDateTime: Date = new Date(inputDateString);
 
@@ -24,26 +26,31 @@ function formatDateString(inputDateString: string): string {
     .replace(' ', ' • ');
 }
 
-async function getBlogById(id:string){
-  const res = await fetch(`http://localhost:8000/api/blog/${id}` , {
+async function getBlogById(id: string) {
+  const res = await fetch(API_URL + `/${id}`, {
     cache: 'no-cache',
   })
 
   return res.json()
 }
 
-async function getBlogs() {
-  const res = await fetch('http://localhost:8000/api/blog' , {
+// remove the data with the same id
+async function getBlogs(id: string) {
+  const res = await fetch(API_URL as string, {
     cache: 'no-cache',
   })
 
-  return res.json()
+  const data = await res.json().then((data) => {
+    return data.filter((blog: any) => blog.id !== id)
+  })
+
+  return data
 }
 
 export default async function BlogPage({ params }: { params: { id: string } }) {
 
   const blogData = await getBlogById(params.id)
-  const blogs = await getBlogs()
+  const blogs = await getBlogs(params.id)
 
   return (
     <div className=" flex flex-col md:flex-row">
@@ -62,7 +69,7 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
 
       <div className=" w-full md:w-1/4 p-10 md:px-5  flex flex-col gap-5 ">
         <h1 className="  font-bold text-2xl">Related Articles</h1>
-        {blogs.map((blog : blogCardProps, index : number) => (
+        {blogs.map((blog: blogCardProps, index: number) => (
           <BlogCard key={index} {...blog} />
         ))}
       </div>

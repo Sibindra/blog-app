@@ -40,7 +40,7 @@ const postFormData = async (data: blogFormValues) => {
     const { title, description, imgSrc, demoLink, blogContent, readTime } = data
 
     try {
-        const res = await fetch("http://localhost:8000/api/blog", {
+        const res = await fetch(process.env.API_URL as string, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

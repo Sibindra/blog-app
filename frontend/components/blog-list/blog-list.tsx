@@ -3,7 +3,7 @@ import BlogCard from "@/components/cards/blog-card"
 
 
 async function getBlogs() {
-    const res = await fetch('http://localhost:8000/api/blog' , {
+    const res = await fetch(process.env.API_URL as string, {
         cache: 'no-cache',
     })
     return res.json()
