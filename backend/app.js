@@ -8,9 +8,15 @@ const app = express();
 app.use(express.json());
 const checkAuth = require('./middewares/auth')
 app.use(checkAuth);
+
 // cors
 const cors = require("cors");
 app.use(cors());
+
+// views
+const path = require("path");
+app.set("views", path.resolve('./views'));
+app.set("view engine", "ejs");
 
 // DB
 const connect = require("./lib/connect");
