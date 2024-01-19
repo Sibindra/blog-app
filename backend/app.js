@@ -6,16 +6,22 @@ const app = express();
 
 // middlewares
 app.use(express.json());
-const checkAuth = require('./middewares/auth')
+const checkAuth = require("./middewares/auth");
 app.use(checkAuth);
 
 // cors
 const cors = require("cors");
-app.use(cors());
+
+const corsOptions = {
+  origin: process.env.ADMIN_URL,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // views
 const path = require("path");
-app.set("views", path.resolve('./views'));
+app.set("views", path.resolve("./views"));
 app.set("view engine", "ejs");
 
 // DB
