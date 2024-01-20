@@ -25,9 +25,8 @@ const NavList = () => {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56 transition-all" align="end" forceMount>
-
                 <DropdownMenuItem onClick={toggleTheme} className=" flex gap-1 items-center`">
-                    Change Theme: {theme === 'dark' ? 'Dark' : 'Light' } 
+                    Change Theme: {theme === 'dark' ? 'Dark' : 'Light'}
 
                 </DropdownMenuItem>
 
@@ -35,17 +34,14 @@ const NavList = () => {
                 <DropdownMenuGroup>
                     <DropdownMenuItem>
                         Portfolio
-                        <DropdownMenuShortcut>⌘A</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        Blogs
-                        <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                        <DropdownMenuShortcut>⌘</DropdownMenuShortcut>
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                    Contact Me
-                </DropdownMenuItem>
+                <a href="https://linktr.ee/sibendra" target="_blank">
+                    <DropdownMenuItem>
+                        Contact Me
+                    </DropdownMenuItem>
+                </a>
             </DropdownMenuContent>
         </DropdownMenu>
     )
