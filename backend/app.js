@@ -5,19 +5,17 @@ const express = require("express");
 const app = express();
 
 // middlewares
-app.use(express.json());
 const checkAuth = require("./middewares/auth");
+const cors = require('cors');
+
+app.use(cors({
+  origin: [process.env.ADMIN_CLIENT_URL , process.env.VERCEL_CLIENT_URL ],
+}))
+
+app.use(express.json());
 app.use(checkAuth);
 
-// cors
-const cors = require("cors");
 
-const corsOptions = {
-  origin: process.env.ADMIN_URL,
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
 
 // views
 const path = require("path");
