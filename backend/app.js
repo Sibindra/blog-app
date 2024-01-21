@@ -9,7 +9,7 @@ const checkAuth = require("./middewares/auth");
 const cors = require('cors');
 
 app.use(cors({
-  origin: [process.env.ADMIN_CLIENT_URL , process.env.VERCEL_CLIENT_URL ],
+  origin: [process.env.ADMIN_CLIENT_URL , process.env.CLIENT_URL ],
 }))
 
 app.use(express.json());
